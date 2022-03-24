@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+    <script  type = "text/javascript">
+      function redirect(link) {
+        window.location.href = link;
+     }
+    </script>
+</head>
+<body>
+<div class="container">
+    <h2 class="display-2">Registrar Cliente</h2>
+    <form method="POST" action="/clientes">
+        <div class="input-group mb-3">
+            <input type="text" name="ced" class="form-control" placeholder="Cedula">
+            <input type="text" name="nom" class="form-control" placeholder="Nombre">
+            <input type="text" name="ape" class="form-control" placeholder="Apellido">
+            <!--<input type="text" name="com" class="form-control" placeholder="Compra">!-->
+            <div class="input-group-append" id="button-addon">
+                <button class="btn btn-outline-primary" type="submit" value="update">Create new</button>
+            </div>
+        </div>
+    </form>
+    <h2 class="display-2">Clientes</h2>
+    {% for client in clients %}
+    <p>
+    <form method="POST" action="/edit_client/{{client.id}}">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <div class="input-group-text">
+                <input type="hidden" name="done" value="off">
+                <input type="checkbox" onclick="redirect('/edit_client/{{client.id}}')" data-target="/edit_client/{{client.id}}" name="assigned">
+            </div>
+        </div>
+        <label type="text" name="ced" class="form-control">{{client.cedula}}</label>
+        <input type="text" value="{{client.nombre}}" name="nom" class="form-control">
+        <label type="text" name="ape" class="form-control">{{client.apellido}}</label>
+        <label type="text" name="com" class="form-control">{{client.compra}}</label>
+        <div class="input-group-append" id="button-addon2">
+            <button class="btn btn-outline-secondary" type="submit" value="update">Update</button>
+        </div>
+    </div>
+    </form>
+    {% endfor %}
+    <div>
+        <button onclick="redirect('/')">Inicio</button>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Artículos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+    <script  type = "text/javascript">
+      function redirect(link) {
+        window.location.href = link;
+     }
+    </script>
+</head>
+<body>
+<div class="container">
+    <h2 class="display-2">Registrar Artículo</h2>
+    <form method="POST" action="/articulos">
+        <div class="input-group mb-3">
+            <input type="text" name="mar" class="form-control" placeholder="Marca">
+            <input type="text" name="pre" class="form-control" placeholder="Precio">
+            <input type="text" name="nom" class="form-control" placeholder="Nombre">
+            <div class="input-group-append" id="button-addon">
+                <button class="btn btn-outline-primary" type="submit" value="update">Create new</button>
+            </div>
+        </div>
+    </form>
+    <h2 class="display-2">Artículos</h2>
+    {% for article in articles %}
+    <p>
+    <form method="POST" action="/edit_article/{{article.id}}">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <div class="input-group-text">
+                <input type="hidden" name="done" value="off">
+                <input type="checkbox" onclick="redirect('/edit_article/{{article.id}}')" data-target="/edit_article/{{article.id}}" name="assigned">
+            </div>
+        </div>
+        <label type="text" name="mar" class="form-control">{{article.marca}}</label>
+        <input type="text" value="{{article.precio}}" name="pre" class="form-control">
+        <label type="text" name="nom" class="form-control">{{article.nombre}}</label>
+        <div class="input-group-append" id="button-addon2">
+            <button class="btn btn-outline-secondary" type="submit" value="update">Update</button>
+        </div>
+    </div>
+    </form>
+    {% endfor %}
+    <div>
+        <button onclick="redirect('/')">Inicio</button>
+    </div>
+</div>
+<!--<form action="/upload_image" enctype="multipart/form-data" method="POST">
+    <input type="file" name="imagen" />
+    <input type="submit" value="Subir Imagen" />
+</form>!-->
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Inventario Tienda de Zapatos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+    <script  type = "text/javascript">
+      function redirect(link) {
+        window.location.href = link;
+     }
+    </script>
+</head>
+<body>
+<div class="container">
+    <h2>Registrar Compra</h2>
+    {% for client in clients %}
+    <form method="post" action="/update_compra/{{client.id}}">
+        <p>Articulo: <select name="com">
+            {% for article in articles %}
+            <option>{{article.marca}} {{article.nombre}} ${{article.precio}}</option>
+            {% endfor %}
+        </select></p>
+
+        <p>Cliente: <select>
+
+            <option>{{client.nombre}} {{client.apellido}}</option>
+
+        </select></p>
+        <div class="input-group-append" id="button-addon">
+            <button class="btn btn-outline-primary" type="submit" value="update">Update</button>
+        </div>
+
+    </form>
+    {% endfor %}
+</div>
+<p>
+<div class="container">
+    <button onclick="redirect('/articulos')">Ver Artículos</button>
+    <button onclick="redirect('/clientes')">Ver Clientes</button>
+</div>
+</body>
+</html>
