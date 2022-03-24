@@ -76,8 +76,9 @@ def update_client(client_id, nombre):
 
 
 def update_compra(client_id, compra):
+    cliente = db.session.query(Client).filter_by(id=client_id).first()
     db.session.query(Client).filter_by(id=client_id).update({
-        "compra": compra
+        "compra": cliente.compra +" "+ compra
     })
     db.session.commit()
 
