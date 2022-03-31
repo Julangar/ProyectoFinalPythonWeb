@@ -20,15 +20,14 @@
             <option>{{article.marca}} {{article.nombre}} ${{article.precio}}</option>
             {% endfor %}
         </select></p>
-
-        <p>Cliente: <select>
-
+        <p>Cliente: <input readonly name="Cliente" value="{{client.nombre}} {{client.apellido}}"></p>
+        <!--<p>Cliente: <select>
             <option>{{client.nombre}} {{client.apellido}}</option>
-
-        </select></p>
+        </select></p>!-->
         <div class="input-group-append" id="button-addon">
             <button class="btn btn-outline-primary" type="submit" value="update">Update</button>
         </div>
+        <p>
 
     </form>
     {% endfor %}
